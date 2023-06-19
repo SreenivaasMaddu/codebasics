@@ -92,7 +92,11 @@
 		 --Not available locally and Health concerns are reasons consumers prefer those brands over ours
  
  
-		 -----------------------/*4. Marketing Channels and Brand Awareness*/-------------------------------------------------------		------------------------a. Which marketing channel can be used to reach more customers?-------------------------------------		 ------------------------b. How effective are different marketing strategies and channels in reaching our customers?---------		select Marketing_channels,count(1) Respondents
+		 -----------------------/*4. Marketing Channels and Brand Awareness*/-------------------------------------------------------
+		------------------------a. Which marketing channel can be used to reach more customers?-------------------------------------
+		 ------------------------b. How effective are different marketing strategies and channels in reaching our customers?---------
+
+		select Marketing_channels,count(1) Respondents
 		 from [PortfolioDB].[dbo].[fact_survey_responses]
 		 group by Marketing_channels
 		 order by 2 desc;
@@ -102,7 +106,13 @@
 
 
 
-		--------------------------/*5. Brand Penetration*/------------------------------------------------------------------------------		--------------------------a. What do people think about our brand? (overall rating)---------------------------------------------		 select avg(Taste_experience) as Avg_TasteExperience		 from [PortfolioDB].[dbo].[fact_survey_responses];		 ---Average Taste experience is 3 out of 5
+		--------------------------/*5. Brand Penetration*/------------------------------------------------------------------------------
+		--------------------------a. What do people think about our brand? (overall rating)---------------------------------------------
+		 select avg(Taste_experience) as Avg_TasteExperience
+		 from [PortfolioDB].[dbo].[fact_survey_responses];
+
+		 ---Average Taste experience is 3 out of 5
+
 		select General_perception,count(1) Respondents
 		from [PortfolioDB].[dbo].[fact_survey_responses]
 		group by General_perception
@@ -121,7 +131,8 @@
 
 		----------------------------b. Which cities do we need to focus more on?----------------------------------------------------------
 
-		 select City,count(Respondent_ID) Respondents		  FROM [PortfolioDB].[dbo].[dim_repondents] a
+		 select City,count(Respondent_ID) Respondents
+		  FROM [PortfolioDB].[dbo].[dim_repondents] a
 		  join [PortfolioDB].[dbo].[dim_cities] b
 		  on a.[City_ID]=b.[City_ID]
 		  group by City
@@ -130,7 +141,74 @@
 
 		 ----Chennai,Pune,Kolkata,Ahmedabad,Delhi,Jaipur,Lucknow 
 
-		---------------------------/*6. Purchase Behavior*/-----------------------------------------------------------------------------------		----------------------------a. Where do respondents prefer to purchase energy drinks?---------------------------------------------		select Purchase_location,count(1) Respondents 		from [PortfolioDB].[dbo].[fact_survey_responses]		group by Purchase_location		order by 2 desc;		--Respondents prefer to purchase energy drinks on Supermarkets,Online retailers  		--4494 respondents prefer to purchase energy drinks in Supermarkets and 2550 prefer on Online retailers		---------------------------------b. What are the typical consumption situations for energy drinks among respondents?------------------------- 		 select Typical_consumption_situations, count(1) Respondents 		 from [PortfolioDB].[dbo].[fact_survey_responses]		 group by Typical_consumption_situations		 order by 2 desc;		---Sports/exercise and Studying/working late are the typical consumption situations for energy drinks among respondents		 --------------------------------c. What factors influence respondents' purchase decisions, such as price range and limited edition packaging?----		 select Limited_edition_packaging,count(1) Respondents		 from [PortfolioDB].[dbo].[fact_survey_responses]		 group by Limited_edition_packaging		 order by 2 desc;		 select Price_range,count(1) Respondents		 from [PortfolioDB].[dbo].[fact_survey_responses]		 group by Price_range		 order by 2 desc		 ----50-99 is a good price range		 ----------------------------/*7. Product Development*/------------------------------------------------------------		 ----------------------------a. Which area of business should we focus more on our product development? (Branding/taste/availability)		 --Need to change brand perception from neutral to positive more and less negitive		 --In general perception it should be more healthy and less dangerous(check General perception query)		 --Average Taste experience is 3 out of 5 which it should be 4 or above		 ---it should be available at all places 		 ----Right now it is available more on Supermarkets and Online retailers more		 		 --Recommendations		 --1) Price should be 50-99 in range.		 --2) It should be available at all places to purchase immediately.		 --3) Showing more Health concerns as Respondents choosing other products over this.		 --4) Making it available in all cities at all places.		 --5) Increasing campaiging effectively Outdoor billboards,Print media and other.		 --6) Increasing female count by running campaingn on digital media.		 --7) Ramcharan will be a good one for brand ambassador as he has good following and healthy image.		 --8) 19-45 should be our target audience because its easy to reach them through personalised digital campaigns 		 ---throgh demographics and their life styles.(Facebook ads,Twitter ads and more)		 --9)Caffeine,Vitamins are the preferred ingredients so if we focus on these taste experience may increase as it is 3 now.		 --10) Concentrating more cities 		     
+
+
+	---------------------------/*6. Purchase Behavior*/-----------------------------------------------------------------------------------
+	----------------------------a. Where do respondents prefer to purchase energy drinks?---------------------------------------------
+		select Purchase_location,count(1) Respondents 
+		from [PortfolioDB].[dbo].[fact_survey_responses]
+		group by Purchase_location
+		order by 2 desc;
+
+	--Respondents prefer to purchase energy drinks on Supermarkets,Online retailers  
+
+	--4494 respondents prefer to purchase energy drinks in Supermarkets and 2550 prefer on Online retailers
+
+
+
+		---------------------------------b. What are the typical consumption situations for energy drinks among respondents?-------------------------
+ 
+		 select Typical_consumption_situations, count(1) Respondents 
+		 from [PortfolioDB].[dbo].[fact_survey_responses]
+		 group by Typical_consumption_situations
+		 order by 2 desc;
+		---Sports/exercise and Studying/working late are the typical consumption situations for energy drinks among respondents
+
+
+		 --------------------------------c. What factors influence respondents' purchase decisions, such as price range and limited edition packaging?----
+
+		 select Limited_edition_packaging,count(1) Respondents
+		 from [PortfolioDB].[dbo].[fact_survey_responses]
+		 group by Limited_edition_packaging
+		 order by 2 desc;
+
+		 select Price_range,count(1) Respondents
+		 from [PortfolioDB].[dbo].[fact_survey_responses]
+		 group by Price_range
+		 order by 2 desc
+
+		 ----50-99 is a good price range
+
+
+		 ----------------------------/*7. Product Development*/------------------------------------------------------------
+		 ----------------------------a. Which area of business should we focus more on our product development? (Branding/taste/availability)
+
+
+		 --Need to change brand perception from neutral to positive more and less negitive
+		 --In general perception it should be more healthy and less dangerous(check General perception query)
+		 --Average Taste experience is 3 out of 5 which it should be 4 or above
+		 ---it should be available at all places 
+		 ----Right now it is available more on Supermarkets and Online retailers more
+		 
+
+		 --Recommendations
+		 --1) Price should be 50-99 in range.
+		 --2) It should be available at all places to purchase immediately.
+		 --3) Showing more Health concerns as Respondents choosing other products over this.
+		 --4) Making it available in all cities at all places.
+		 --5) Increasing campaiging effectively Outdoor billboards,Print media and other.
+		 --6) Increasing female count by running campaingn on digital media.
+		 --7) Ramcharan will be a good one for brand ambassador as he has good following and healthy image.
+		 --8) 19-45 should be our target audience because its easy to reach them through personalised digital campaigns 
+		 ---throgh demographics and their life styles.(Facebook ads,Twitter ads and more)
+		 --9)Caffeine,Vitamins are the preferred ingredients so if we focus on these taste experience may increase as it is 3 now.
+		 --10) Concentrating more cities 
+		     
+
+
+
+
+
 
 
 
